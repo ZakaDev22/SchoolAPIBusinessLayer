@@ -36,9 +36,9 @@ namespace SchoolBusinessLayer
 
         private async Task<bool> _AddNewAsync(staffSalaryDTO salaryDTO)
         {
-            this.StaffID = await clsStaffSalaryData.AddAsync(salaryDTO);
+            this.StaffSalaryID = await clsStaffSalaryData.AddAsync(salaryDTO);
 
-            return (this.StaffID != -1);
+            return (this.StaffSalaryID != -1);
         }
 
         private async Task<bool> _UpdateAsync(staffSalaryDTO salaryDTO)

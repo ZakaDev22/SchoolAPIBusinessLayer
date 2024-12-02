@@ -12,11 +12,11 @@ namespace SchoolBusinessLayer
             get
             {
 
-                return new staffSalaryDTO(this.StaffSalaryID, this.StaffID, this.Salary, this.EffectiveDate, this.Bonus, this.Deductions);
+                return new staffSalaryDTO(this.ID, this.StaffID, this.Salary, this.EffectiveDate, this.Bonus, this.Deductions);
             }
         }
 
-        public int StaffSalaryID { get; set; }
+        public int ID { get; set; }
         public int StaffID { get; set; }
         public decimal Salary { get; set; }
         public DateTime EffectiveDate { get; set; }
@@ -26,7 +26,7 @@ namespace SchoolBusinessLayer
         public clsStaffSalary(staffSalaryDTO SalaryDTO, enMode mode)
         {
             _Mode = mode;
-            StaffSalaryID = SalaryDTO.StaffSalaryID;
+            ID = SalaryDTO.ID;
             StaffID = SalaryDTO.StaffID;
             Salary = SalaryDTO.Salary;
             EffectiveDate = SalaryDTO.EffectiveDate;
@@ -36,9 +36,9 @@ namespace SchoolBusinessLayer
 
         private async Task<bool> _AddNewAsync(staffSalaryDTO salaryDTO)
         {
-            this.StaffSalaryID = await clsStaffSalaryData.AddAsync(salaryDTO);
+            this.ID = await clsStaffSalaryData.AddAsync(salaryDTO);
 
-            return (this.StaffSalaryID != -1);
+            return (this.ID != -1);
         }
 
         private async Task<bool> _UpdateAsync(staffSalaryDTO salaryDTO)

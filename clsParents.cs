@@ -12,11 +12,11 @@ namespace SchoolBusinessLayer
             get
             {
 
-                return new parentDTO(this.ParentID, this.PersonID, this.RelationshipID, this.StudentID);
+                return new parentDTO(this.ID, this.PersonID, this.RelationshipID, this.StudentID);
             }
         }
 
-        public int ParentID { get; set; }
+        public int ID { get; set; }
         public int PersonID { get; set; }
         public int RelationshipID { get; set; }
         public int StudentID { get; set; }
@@ -25,7 +25,7 @@ namespace SchoolBusinessLayer
         {
             _Mode = mode;
 
-            ParentID = parent.ParentID;
+            ID = parent.ID;
             PersonID = parent.PersonID;
             RelationshipID = parent.RelationshipTypeID;
             StudentID = parent.StudentID;
@@ -34,9 +34,9 @@ namespace SchoolBusinessLayer
 
         private async Task<bool> _AddNewAsync(parentDTO parent)
         {
-            this.ParentID = await clsParentsData.AddAsync(parent);
+            this.ID = await clsParentsData.AddAsync(parent);
 
-            return (this.ParentID != -1);
+            return (this.ID != -1);
         }
 
         private async Task<bool> _UpdateAsync(parentDTO parent)

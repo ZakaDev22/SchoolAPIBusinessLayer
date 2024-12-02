@@ -12,11 +12,11 @@ namespace SchoolBusinessLayer
             get
             {
 
-                return new sgLogDTO(this.LogID, this.StudentID, this.SubjectID, this.Grade, this.LogDate, this.Comments);
+                return new sgLogDTO(this.ID, this.StudentID, this.SubjectID, this.Grade, this.LogDate, this.Comments);
             }
         }
 
-        public int LogID { get; set; }
+        public int ID { get; set; }
         public int StudentID { get; set; }
         public int SubjectID { get; set; }
         public decimal Grade { get; set; }
@@ -26,7 +26,7 @@ namespace SchoolBusinessLayer
         public clsStudentGradesLog(sgLogDTO sglDTO, enMode mode)
         {
             _Mode = mode;
-            LogID = sglDTO.LogID;
+            ID = sglDTO.ID;
             StudentID = sglDTO.StudentID;
             SubjectID = sglDTO.SubjectID;
             Grade = sglDTO.Grade;
@@ -36,9 +36,9 @@ namespace SchoolBusinessLayer
 
         private async Task<bool> _AddNewAsync(sgLogDTO sDTO)
         {
-            this.LogID = await clsStudentGradesLogData.AddAsync(sDTO);
+            this.ID = await clsStudentGradesLogData.AddAsync(sDTO);
 
-            return this.LogID != -1;
+            return this.ID != -1;
         }
 
         private async Task<bool> _UpdateAsync(sgLogDTO sDTO)

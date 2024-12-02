@@ -12,22 +12,22 @@ namespace SchoolBusinessLayer
             get
             {
 
-                return new subjectDTO(this.SubjectID, this.SubjectName, this.SubjectCode, this.SchoolID);
+                return new subjectDTO(this.ID, this.Name, this.Code, this.SchoolID);
             }
         }
 
-        public int SubjectID { get; set; }
-        public string SubjectName { get; set; }
-        public string SubjectCode { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
         public int SchoolID { get; set; }
 
         public clsSubjects(subjectDTO subject, enMode mode)
         {
             _Mode = mode;
 
-            SubjectID = subject.SubjectID;
-            SubjectName = subject.SubjectName;
-            SubjectCode = subject.SubjectCode;
+            ID = subject.ID;
+            Name = subject.Name;
+            Code = subject.Code;
             SchoolID = subject.SchoolID;
 
 
@@ -35,9 +35,9 @@ namespace SchoolBusinessLayer
 
         private async Task<bool> _AddNewAsync(subjectDTO sDTO)
         {
-            this.SubjectID = await clsSubjectsData.AddAsync(sDTO);
+            this.ID = await clsSubjectsData.AddAsync(sDTO);
 
-            return this.SubjectID != -1;
+            return this.ID != -1;
         }
 
         private async Task<bool> _UpdateAsync(subjectDTO sDTO)

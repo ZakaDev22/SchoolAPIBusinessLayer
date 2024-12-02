@@ -14,12 +14,12 @@ namespace SchoolBusinessLayer
             get
             {
 
-                return new PersonDTO(this.PersonID, this.FirstName, this.LastName, this.DateOfBirth, this.Gender,
+                return new PersonDTO(this.ID, this.FirstName, this.LastName, this.DateOfBirth, this.Gender,
                                         this.SchoolID, this.AddressID);
             }
         }
 
-        public int PersonID { get; set; }
+        public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
@@ -33,7 +33,7 @@ namespace SchoolBusinessLayer
         {
 
 
-            this.PersonID = personDTO.PersonID;
+            this.ID = personDTO.ID;
             this.FirstName = personDTO.FirstName;
             this.LastName = personDTO.LastName;
             this.DateOfBirth = personDTO.DateOfBirth;
@@ -46,9 +46,9 @@ namespace SchoolBusinessLayer
 
         private async Task<bool> _AddNewAsync(PersonDTO personDTO)
         {
-            this.PersonID = await clsPeopleData.AddAsync(personDTO);
+            this.ID = await clsPeopleData.AddAsync(personDTO);
 
-            return (this.PersonID != -1);
+            return (this.ID != -1);
         }
 
         private async Task<bool> _UpdateAsync(PersonDTO personDTO)

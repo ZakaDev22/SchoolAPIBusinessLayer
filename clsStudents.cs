@@ -12,11 +12,11 @@ namespace SchoolBusinessLayer
             get
             {
 
-                return new studentDTO(this.StudentID, this.PersonID, this.StudentGradeID, this.SchoolID, this.EnrollmentDate, this.IsActive);
+                return new studentDTO(this.ID, this.PersonID, this.StudentGradeID, this.SchoolID, this.EnrollmentDate, this.IsActive);
             }
         }
 
-        public int StudentID { get; set; }
+        public int ID { get; set; }
         public int PersonID { get; set; }
         public int StudentGradeID { get; set; }
         public int SchoolID { get; set; }
@@ -26,7 +26,7 @@ namespace SchoolBusinessLayer
         public clsStudents(studentDTO studentDTO, enMode mode)
         {
             _Mode = mode;
-            StudentID = studentDTO.StudentID;
+            ID = studentDTO.ID;
             PersonID = studentDTO.PersonID;
             StudentGradeID = studentDTO.StudentGradeID;
             SchoolID = studentDTO.SchoolID;
@@ -36,9 +36,9 @@ namespace SchoolBusinessLayer
 
         private async Task<bool> _AddNewAsync(studentDTO studentDTO)
         {
-            this.StudentID = await clsStudentsData.AddAsync(studentDTO);
+            this.ID = await clsStudentsData.AddAsync(studentDTO);
 
-            return (this.StudentID != -1);
+            return (this.ID != -1);
         }
 
         private async Task<bool> _UpdateAsync(studentDTO studentDTO)

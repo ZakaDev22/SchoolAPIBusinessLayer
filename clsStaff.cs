@@ -12,11 +12,11 @@ namespace SchoolBusinessLayer
             get
             {
 
-                return new staffDTO(this.StaffID, this.PersonID, this.JobTitleID, this.DepartmentID, this.SchoolID, this.StaffSalaryID);
+                return new staffDTO(this.ID, this.PersonID, this.JobTitleID, this.DepartmentID, this.SchoolID, this.StaffSalaryID);
             }
         }
 
-        public int StaffID { get; set; }
+        public int ID { get; set; }
         public int PersonID { get; set; }
         public int JobTitleID { get; set; }
         public int DepartmentID { get; set; }
@@ -27,7 +27,7 @@ namespace SchoolBusinessLayer
         {
             _Mode = mode;
 
-            StaffID = staff.StaffID;
+            ID = staff.ID;
             PersonID = staff.PersonID;
             JobTitleID = staff.JobTitleID;
             DepartmentID = staff.DepartmentID;
@@ -38,9 +38,9 @@ namespace SchoolBusinessLayer
 
         private async Task<bool> _AddNewAsync(staffDTO staff)
         {
-            this.StaffID = await clsStaffData.AddAsync(staffDTO);
+            this.ID = await clsStaffData.AddAsync(staffDTO);
 
-            return (this.StaffID != -1);
+            return (this.ID != -1);
         }
 
         private async Task<bool> _UpdateAsync(staffDTO staff)

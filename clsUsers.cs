@@ -12,7 +12,7 @@ namespace SchoolBusinessLayer
         {
             get
             {
-                return new UserDTO(this.userID, this.personID, this.userName, this.permissions, this.AddedByUserID);
+                return new UserDTO(this.ID, this.personID, this.userName, this.permissions, this.AddedByUserID);
             }
         }
 
@@ -20,11 +20,11 @@ namespace SchoolBusinessLayer
         {
             get
             {
-                return new FullUserDTO(this.userID, this.personID, this.userName, this.passwordHash, this.permissions, this.AddedByUserID);
+                return new FullUserDTO(this.ID, this.personID, this.userName, this.passwordHash, this.permissions, this.AddedByUserID);
             }
         }
 
-        public int userID { get; set; }
+        public int ID { get; set; }
         public int personID { get; set; }
         public string userName { get; set; }
         public string passwordHash { get; set; }
@@ -34,7 +34,7 @@ namespace SchoolBusinessLayer
         public clsUsers(enMode mode, FullUserDTO fullUserDTO)
         {
             Mode = mode;
-            this.userID = fullUserDTO.UserID;
+            this.ID = fullUserDTO.ID;
             this.personID = fullUserDTO.PersonID;
             this.userName = fullUserDTO.UserName;
             this.passwordHash = fullUserDTO.Password;
@@ -63,9 +63,9 @@ namespace SchoolBusinessLayer
         // Method to add a new user
         private async Task<bool> _AddNewAsync(FullUserDTO userDTO)
         {
-            this.userID = await clsUsersData.AddAsync(userDTO);
+            this.ID = await clsUsersData.AddAsync(userDTO);
 
-            return (this.userID != -1);
+            return (this.ID != -1);
         }
 
         private async Task<bool> _UpdateAsync(FullUserDTO userDTO)

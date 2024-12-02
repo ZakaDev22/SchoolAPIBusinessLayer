@@ -11,31 +11,31 @@ namespace SchoolBusinessLayer
         {
             get
             {
-                return new classDTO(this.ClassID, this.ClassName, this.ClassCode, this.Capacity, this.SchoolID);
+                return new classDTO(this.ID, this.Name, this.Code, this.Capacity, this.SchoolID);
             }
         }
 
-        public int ClassID { get; set; }
-        public string ClassName { get; set; }
-        public string ClassCode { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
         public short Capacity { get; set; }
         public int SchoolID { get; set; }
 
         public clsClasses(classDTO clsDTO, enMode mode)
         {
             Mode = mode;
-            ClassID = clsDTO.ClassID;
-            ClassName = clsDTO.ClassName;
-            ClassCode = clsDTO.ClassCode;
+            ID = clsDTO.ID;
+            Name = clsDTO.Name;
+            Code = clsDTO.Code;
             Capacity = clsDTO.Capacity;
             SchoolID = clsDTO.SchoolID; ;
         }
 
         private async Task<bool> _AddNewAsync(classDTO clsDTO)
         {
-            this.ClassID = await clsClassesData.AddAsync(clsDTO);
+            this.ID = await clsClassesData.AddAsync(clsDTO);
 
-            return (this.ClassID != -1);
+            return (this.ID != -1);
         }
 
         private async Task<bool> _UpdateAsync(classDTO clsDTO)

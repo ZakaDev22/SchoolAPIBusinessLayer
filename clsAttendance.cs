@@ -11,32 +11,32 @@ namespace SchoolBusinessLayer
         {
             get
             {
-                return new attendanceDTO(this.AttendanceID, this.StudentID, this.ClassID, this.AttendanceDate, this.Status);
+                return new attendanceDTO(this.ID, this.StudentID, this.ClassID, this.Date, this.Status);
             }
         }
 
-        public int AttendanceID { get; set; }
+        public int ID { get; set; }
         public int StudentID { get; set; }
         public int ClassID { get; set; }
-        public DateTime AttendanceDate { get; set; }
+        public DateTime Date { get; set; }
         public bool Status { get; set; }
 
         public clsAttendance(attendanceDTO attendanceDTO, enMode mode)
         {
             Mode = mode;
 
-            AttendanceID = attendanceDTO.AttendanceID;
+            ID = attendanceDTO.ID;
             StudentID = attendanceDTO.StudentID;
             ClassID = attendanceDTO.ClassID;
-            AttendanceDate = attendanceDTO.AttendanceDate;
+            Date = attendanceDTO.Date;
             Status = attendanceDTO.Status;
         }
 
         private async Task<bool> _AddNewAsync(attendanceDTO atd)
         {
-            this.AttendanceID = await clsAttendanceData.AddAsync(atd);
+            this.ID = await clsAttendanceData.AddAsync(atd);
 
-            return (this.AttendanceID != -1);
+            return (this.ID != -1);
         }
 
         private async Task<bool> _UpdateAsync(attendanceDTO atd)

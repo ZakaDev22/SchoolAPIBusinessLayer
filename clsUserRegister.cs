@@ -11,12 +11,12 @@ namespace SchoolBusinessLayer
         {
             get
             {
-                return new userRegisterDTO(this.RegisterID, this.UserID, this.LoginTime, this.LogoutTime, this.IPAdrress, this.SessionDuration);
+                return new userRegisterDTO(this.ID, this.UserID, this.LoginTime, this.LogoutTime, this.IPAdrress, this.SessionDuration);
             }
         }
 
 
-        public int RegisterID { get; set; }
+        public int ID { get; set; }
         public int UserID { get; set; }
         public DateTime LoginTime { get; set; }
         public DateTime? LogoutTime { get; set; }
@@ -28,7 +28,7 @@ namespace SchoolBusinessLayer
         {
             Mode = mode;
 
-            RegisterID = userRegisterDTO.RegisterID;
+            ID = userRegisterDTO.ID;
             UserID = userRegisterDTO.UserID;
             LoginTime = userRegisterDTO.LoginTime;
             LogoutTime = userRegisterDTO.LogoutTime;
@@ -38,9 +38,9 @@ namespace SchoolBusinessLayer
 
         private async Task<bool> _AddNewAsync(userRegisterDTO sDTO)
         {
-            this.RegisterID = await clsUserRegisterData.AddAsync(sDTO);
+            this.ID = await clsUserRegisterData.AddAsync(sDTO);
 
-            return this.RegisterID != -1;
+            return this.ID != -1;
         }
 
         private async Task<bool> _UpdateAsync(int registerID)
@@ -63,7 +63,7 @@ namespace SchoolBusinessLayer
                         return false;
 
                 case enMode.Update:
-                    return await _UpdateAsync(RegisterID);
+                    return await _UpdateAsync(ID);
             }
             return false;
         }

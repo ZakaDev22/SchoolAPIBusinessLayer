@@ -44,5 +44,15 @@ namespace SchoolBusinessLayer
 
             return number != null ? new clsPhoneNumbers(number, enMode.Update) : null;
         }
+
+        public static async Task<bool> DeleteAsync(int ID)
+        {
+            return await clsPhoneNumbersData.DeleteAsync(ID);
+        }
+
+        public static async Task<bool> IsExistsAsync(int ID)
+        {
+            return await clsPhoneNumbersData.IsExistsAsync(ID);
+        }
     }
 }

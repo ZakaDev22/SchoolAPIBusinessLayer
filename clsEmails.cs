@@ -32,6 +32,39 @@ namespace SchoolBusinessLayer
         }
 
 
+        private async Task<bool> _AddNewAsync(EmailDTO emailDTO)
+        {
+            this.ID = await clsEmailsData.AddAsync(emailDTO);
+
+            return (this.ID != -1);
+        }
+
+        private async Task<bool> _UpdateAsync(EmailDTO emailDTO)
+        {
+            return await clsEmailsData.UpdateAsync(emailDTO);
+        }
+
+        public async Task<bool> SaveAsync()
+        {
+            switch (Mode)
+            {
+                case enMode.AddNew:
+
+                    if (await _AddNewAsync(emailDTO))
+                    {
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                        return false;
+
+                case enMode.Update:
+                    return await _UpdateAsync(emailDTO);
+            }
+            return false;
+        }
+
+
         public static async Task<IEnumerable<EmailDTO>> GetAllAsync()
         {
             var list = await clsEmailsData.GetAllAsync();

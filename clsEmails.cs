@@ -46,5 +46,15 @@ namespace SchoolBusinessLayer
             return email != null ? new clsEmails(email, enMode.Update) : null;
         }
 
+        public static async Task<bool> DeleteAsync(int ID)
+        {
+            return await clsEmailsData.DeleteAsync(ID);
+        }
+
+        public static async Task<bool> IsExistsAsync(int ID)
+        {
+            return await clsEmailsData.IsExistsAsync(ID);
+        }
+
     }
 }

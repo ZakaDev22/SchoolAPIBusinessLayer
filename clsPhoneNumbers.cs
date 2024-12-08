@@ -31,6 +31,39 @@ namespace SchoolBusinessLayer
             IsPrimary = number.IsPrimary;
         }
 
+
+        private async Task<bool> _AddNewAsync(phoneNumberDTO phoneDTO)
+        {
+            this.ID = await clsPhoneNumbersData.AddAsync(phoneDTO);
+
+            return (this.ID != -1);
+        }
+
+        private async Task<bool> _UpdateAsync(phoneNumberDTO phoneDTO)
+        {
+            return await clsPhoneNumbersData.UpdateAsync(phoneDTO);
+        }
+
+        public async Task<bool> SaveAsync()
+        {
+            switch (Mode)
+            {
+                case enMode.AddNew:
+
+                    if (await _AddNewAsync(phoneNumberDTO))
+                    {
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                        return false;
+
+                case enMode.Update:
+                    return await _UpdateAsync(phoneNumberDTO);
+            }
+            return false;
+        }
+
         public static async Task<IEnumerable<phoneNumberDTO>> GetAllAsync()
         {
             var list = await clsPhoneNumbersData.GetAllAsync();

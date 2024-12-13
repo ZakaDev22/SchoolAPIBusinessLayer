@@ -25,6 +25,38 @@ namespace SchoolBusinessLayer
             Name = phoneTypeDTO.Name;
         }
 
+        private async Task<bool> _AddNewAsync(phoneTypesDTO phoneDTO)
+        {
+            this.ID = await clsPhoneTypesData.AddAsync(phoneDTO);
+
+            return (this.ID != -1);
+        }
+
+        private async Task<bool> _UpdateAsync(phoneTypesDTO phoneDTO)
+        {
+            return await clsPhoneTypesData.UpdateAsync(phoneDTO);
+        }
+
+        public async Task<bool> SaveAsync()
+        {
+            switch (Mode)
+            {
+                case enMode.AddNew:
+
+                    if (await _AddNewAsync(phoneTypeDTO))
+                    {
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                        return false;
+
+                case enMode.Update:
+                    return await _UpdateAsync(phoneTypeDTO);
+            }
+            return false;
+        }
+
         public static async Task<IEnumerable<phoneTypesDTO>> GetAllAsync()
         {
             var list = await clsPhoneTypesData.GetAllAsync();

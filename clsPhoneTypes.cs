@@ -38,5 +38,10 @@ namespace SchoolBusinessLayer
 
             return phoneType != null ? new clsPhoneTypes(phoneType, enMode.Update) : null;
         }
+
+        public static async Task<bool> DeleteAsync(int ID)
+        {
+            return await clsPhoneTypesData.DeleteAsync(ID);
+        }
     }
 }

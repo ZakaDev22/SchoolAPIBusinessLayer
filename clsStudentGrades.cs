@@ -28,6 +28,38 @@ namespace SchoolBusinessLayer
             SchoolID = sGrade.SchoolID;
         }
 
+        private async Task<bool> _AddNewAsync(sGradeDTO sDTO)
+        {
+            this.ID = await clsStudentGradesData.AddAsync(sDTO);
+
+            return this.ID != -1;
+        }
+
+        private async Task<bool> _UpdateAsync(sGradeDTO sDTO)
+        {
+            return await clsStudentGradesData.UpdateAsync(sDTO);
+        }
+
+        public async Task<bool> SaveAsync()
+        {
+            switch (_Mode)
+            {
+                case enMode.AddNew:
+
+                    if (await _AddNewAsync(sGradeDTO))
+                    {
+                        _Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                        return false;
+
+                case enMode.Update:
+                    return await _UpdateAsync(sGradeDTO);
+            }
+            return false;
+        }
+
         public static async Task<IEnumerable<sGradeDTO>> GetAllAsync()
         {
             var list = await clsStudentGradesData.GetAllAsync();

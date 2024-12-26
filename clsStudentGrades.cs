@@ -41,5 +41,15 @@ namespace SchoolBusinessLayer
 
             return sgLog != null ? new clsStudentGrades(sgLog, enMode.Update) : null;
         }
+
+        public static async Task<bool> DeleteAsync(int ID)
+        {
+            return await clsStudentGradesData.DeleteAsync(ID);
+        }
+
+        public static async Task<bool> IsExistsAsync(int ID)
+        {
+            return await clsStudentGradesData.IsExistsAsync(ID);
+        }
     }
 }

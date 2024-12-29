@@ -52,5 +52,10 @@ namespace SchoolBusinessLayer
             return address != null ? new clsAddresses(address, enMode.Update) : null;
         }
 
+        public static async Task<bool> DeleteAsync(int ID)
+        {
+            return await clsAddressesData.DeleteAsync(ID);
+        }
+
     }
 }

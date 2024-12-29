@@ -31,6 +31,39 @@ namespace SchoolBusinessLayer
             CountryID = addsDTO.CountryID;
         }
 
+        private async Task<bool> _AddNewAsync(addressDTO atd)
+        {
+            this.ID = await clsAddressesData.AddAsync(atd);
+
+            return (this.ID != -1);
+        }
+
+        private async Task<bool> _UpdateAsync(addressDTO atd)
+        {
+            return await clsAddressesData.UpdateAsync(atd);
+        }
+
+        public async Task<bool> SaveAsync()
+        {
+            switch (Mode)
+            {
+                case enMode.AddNew:
+
+                    if (await _AddNewAsync(addressDTO))
+                    {
+                        Mode = enMode.Update;
+                        return true;
+                    }
+                    else
+                        return false;
+
+                case enMode.Update:
+                    return await _UpdateAsync(addressDTO);
+            }
+            return false;
+        }
+
+
         public static async Task<IEnumerable<addressDTO>> GetAllAsync()
         {
             var list = await clsAddressesData.GetAllAsync();

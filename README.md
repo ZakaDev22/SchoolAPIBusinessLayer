@@ -18,4 +18,4 @@
 
 ## GitHub Links:
 - [Data Access Layer](https://github.com/ZakaDev22/SchoolAPiDataAccessLayer)
-- [Logic Layer](https://github.com/ZakaDev22/SchoolAPIBusinessLayer)
+- [API Layer](https://github.com/ZakaDev22/SchoolAPIProject-Restful-APIs-)
